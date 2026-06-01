@@ -10,6 +10,6 @@ Basic macOS sample app with a bundled AuthenticationServices credential provider
 
 ## Open in Xcode
 
-Open `/tmp/workspace/csett86/mpw-macos/mpw-macos.xcodeproj` in Xcode 16 or newer and build the `mpw-macos` scheme on macOS.
+Open `mpw-macos.xcodeproj` in Xcode 16 or newer and build the `mpw-macos` scheme on macOS.
 
 After installing the app, enable the bundled credential provider from **System Settings → Passwords** (or the relevant AutoFill settings on your macOS version).
