@@ -93,6 +93,8 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     private lazy var continueButton: NSButton = {
         let button = NSButton(title: "Continue", target: self, action: #selector(completeWithCredential))
         button.bezelStyle = .rounded
+        button.keyEquivalent = "\r"
+        button.keyEquivalentModifierMask = []
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -157,7 +159,6 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     }
 
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
-        let summary = serviceIdentifiers.map(\.identifier).joined(separator: ", ")
         pendingServiceIdentifier = serviceIdentifiers
             .lazy
             .compactMap { self.normalizedSiteName(from: $0.identifier) }
@@ -168,31 +169,14 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     }
 
     override func provideCredentialWithoutUserInteraction(for credentialRequest: any ASCredentialRequest) {
-        pendingServiceIdentifier = normalizedSiteName(from: credentialRequest.credentialIdentity.serviceIdentifier.identifier)
-        let requestUser = credentialRequest.credentialIdentity.user.nilIfEmpty ?? ""
-        userNameField.stringValue = requestUser
-        loginNameField.stringValue = requestUser
-        updateSiteUI()
-
-        // Prompting for a user secret requires rendering the extension UI.
+        // Prompting for the Master Password parameters requires rendering the extension UI.
         let error = NSError(domain: ASExtensionErrorDomain, code: ASExtensionError.userInteractionRequired.rawValue)
         extensionContext.cancelRequest(withError: error)
     }
 
     override func prepareInterfaceToProvideCredential(for credentialRequest: any ASCredentialRequest) {
         pendingServiceIdentifier = normalizedSiteName(from: credentialRequest.credentialIdentity.serviceIdentifier.identifier)
-        var displayName = ""
-        if #available(macOS 26.2, *) {
-            displayName = credentialRequest.credentialIdentity.serviceIdentifier.displayName ?? ""
-        } else {
-            // Fallback on earlier versions
-            displayName = pendingServiceIdentifier ?? ""
-        }
         updateSiteUI()
-
-        statusLabel.stringValue = pendingServiceIdentifier?.isEmpty ?? true
-            ? "Enter your Spectre details to finish providing the credential."
-            : "Select Continue to provide a Spectre-derived credential for: \(displayName)"
     }
 
     override func prepareInterfaceForExtensionConfiguration() {
@@ -270,10 +254,4 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     }
 }
 
-private extension String {
-    var nilIfEmpty: String? {
-        let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
-        return trimmed.isEmpty ? nil : trimmed
-    }
-}
 #endif
