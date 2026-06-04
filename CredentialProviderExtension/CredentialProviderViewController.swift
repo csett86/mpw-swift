@@ -1,5 +1,9 @@
-#if canImport(AppKit) && canImport(AuthenticationServices)
+#if canImport(AppKit)
 import AppKit
+#endif
+#if canImport(UIKit)
+import UIKit
+#endif
 import AuthenticationServices
 import Foundation
 
@@ -253,5 +257,3 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
         siteField.stringValue = pendingServiceIdentifier ?? ""
     }
 }
-
-#endif
