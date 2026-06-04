@@ -8,6 +8,7 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
         case missingUserName
         case missingUserSecret
         case missingSite
+        case missingLoginName
 
         var errorDescription: String? {
             switch self {
@@ -17,6 +18,8 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
                 return "Enter a user secret before continuing."
             case .missingSite:
                 return "No requesting site was provided by the extension context."
+            case .missingLoginName:
+                return "Enter a login name before continuing."
             }
         }
     }
@@ -73,6 +76,20 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
         return field
     }()
 
+    private lazy var loginNameLabel: NSTextField = {
+        let label = NSTextField(labelWithString: "Login name")
+        label.font = .systemFont(ofSize: NSFont.systemFontSize, weight: .semibold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private lazy var loginNameField: NSTextField = {
+        let field = NSTextField(string: "")
+        field.placeholderString = "name@example.com"
+        field.translatesAutoresizingMaskIntoConstraints = false
+        return field
+    }()
+
     private lazy var continueButton: NSButton = {
         let button = NSButton(title: "Continue", target: self, action: #selector(completeWithCredential))
         button.bezelStyle = .rounded
@@ -90,6 +107,8 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
         view.addSubview(userNameField)
         view.addSubview(userSecretLabel)
         view.addSubview(userSecretField)
+        view.addSubview(loginNameLabel)
+        view.addSubview(loginNameField)
         view.addSubview(continueButton)
 
         NSLayoutConstraint.activate([
@@ -111,13 +130,18 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
             userSecretField.topAnchor.constraint(equalTo: userSecretLabel.bottomAnchor, constant: 6),
             userSecretField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
             userSecretField.trailingAnchor.constraint(equalTo: statusLabel.trailingAnchor),
-            continueButton.topAnchor.constraint(equalTo: userSecretField.bottomAnchor, constant: 16),
+            loginNameLabel.topAnchor.constraint(equalTo: userSecretField.bottomAnchor, constant: 12),
+            loginNameLabel.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
+            loginNameField.topAnchor.constraint(equalTo: loginNameLabel.bottomAnchor, constant: 6),
+            loginNameField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
+            loginNameField.trailingAnchor.constraint(equalTo: statusLabel.trailingAnchor),
+            continueButton.topAnchor.constraint(equalTo: loginNameField.bottomAnchor, constant: 16),
             continueButton.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
             continueButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -24)
         ])
 
         self.view = view
-        preferredContentSize = NSSize(width: 440, height: 300)
+        preferredContentSize = NSSize(width: 440, height: 360)
     }
 
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
@@ -128,14 +152,14 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
             .first
         updateSiteUI()
 
-        statusLabel.stringValue = summary.isEmpty
-            ? "Waiting for a requesting service before generating a credential."
-            : "Enter your Spectre details to generate a credential for: \(summary)"
+        statusLabel.stringValue = "Enter your Spectre details to generate a credential for: \(pendingServiceIdentifier ?? "N/A")"
     }
 
     override func provideCredentialWithoutUserInteraction(for credentialRequest: any ASCredentialRequest) {
         pendingServiceIdentifier = normalizedSiteName(from: credentialRequest.credentialIdentity.serviceIdentifier.identifier)
-        userNameField.stringValue = credentialRequest.credentialIdentity.user.nilIfEmpty ?? ""
+        let requestUser = credentialRequest.credentialIdentity.user.nilIfEmpty ?? ""
+        userNameField.stringValue = requestUser
+        loginNameField.stringValue = requestUser
         updateSiteUI()
 
         // Prompting for a user secret requires rendering the extension UI.
@@ -144,14 +168,19 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     }
 
     override func prepareInterfaceToProvideCredential(for credentialRequest: any ASCredentialRequest) {
-        let identifier = credentialRequest.credentialIdentity.serviceIdentifier.identifier
-        pendingServiceIdentifier = normalizedSiteName(from: identifier)
-        userNameField.stringValue = credentialRequest.credentialIdentity.user.nilIfEmpty ?? ""
+        pendingServiceIdentifier = normalizedSiteName(from: credentialRequest.credentialIdentity.serviceIdentifier.identifier)
+        var displayName = ""
+        if #available(macOS 26.2, *) {
+            displayName = credentialRequest.credentialIdentity.serviceIdentifier.displayName ?? ""
+        } else {
+            // Fallback on earlier versions
+            displayName = pendingServiceIdentifier ?? ""
+        }
         updateSiteUI()
 
-        statusLabel.stringValue = identifier.isEmpty
+        statusLabel.stringValue = pendingServiceIdentifier?.isEmpty ?? true
             ? "Enter your Spectre details to finish providing the credential."
-            : "Select Continue to provide a Spectre-derived credential for: \(identifier)"
+            : "Select Continue to provide a Spectre-derived credential for: \(displayName)"
     }
 
     override func prepareInterfaceForExtensionConfiguration() {
@@ -169,7 +198,7 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     }
 
     private func makeCredential() throws -> ASPasswordCredential {
-        let userName = userNameField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        let userName = userNameField.stringValue
         guard !userName.isEmpty else {
             throw ProviderError.missingUserName
         }
@@ -184,6 +213,11 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
             throw ProviderError.missingSite
         }
 
+        let loginName = loginNameField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !loginName.isEmpty else {
+            throw ProviderError.missingLoginName
+        }
+
         let password = try SpectreAlgorithm.password(
             for: SpectreConfiguration(
                 userName: userName,
@@ -193,7 +227,7 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
             )
         )
 
-        return ASPasswordCredential(user: userName, password: password)
+        return ASPasswordCredential(user: loginName, password: password)
     }
 
     private func normalizedSiteName(from identifier: String) -> String? {
