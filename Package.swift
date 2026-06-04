@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "SpectreCore",
     platforms: [
-        .macOS(.v14)
+        .macOS(.v14),
         .iOS(.v13)
     ],
     products: [
