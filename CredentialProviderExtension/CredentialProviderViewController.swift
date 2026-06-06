@@ -8,11 +8,14 @@ import AuthenticationServices
 import Foundation
 
 final class CredentialProviderViewController: ASCredentialProviderViewController {
+    private static let resultTypeOptions = SpectreResultType.allCases
+
     private enum ProviderError: Swift.Error, LocalizedError {
         case missingUserName
         case missingUserSecret
         case missingSite
         case missingLoginName
+        case invalidCounter
 
         var errorDescription: String? {
             switch self {
@@ -24,6 +27,8 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
                 return "No requesting site was provided by the extension context."
             case .missingLoginName:
                 return "Enter a login name before continuing."
+            case .invalidCounter:
+                return "Enter a valid counter greater than 0."
             }
         }
     }
@@ -95,6 +100,35 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
         return field
     }()
 
+    private lazy var counterLabel: NSTextField = {
+        let label = NSTextField(labelWithString: "Counter")
+        label.font = .systemFont(ofSize: NSFont.systemFontSize, weight: .semibold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private lazy var counterField: NSTextField = {
+        let field = NSTextField(string: "1")
+        field.placeholderString = "1"
+        field.translatesAutoresizingMaskIntoConstraints = false
+        return field
+    }()
+
+    private lazy var resultTypeLabel: NSTextField = {
+        let label = NSTextField(labelWithString: "Type")
+        label.font = .systemFont(ofSize: NSFont.systemFontSize, weight: .semibold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private lazy var resultTypePopupButton: NSPopUpButton = {
+        let button = NSPopUpButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addItems(withTitles: Self.resultTypeOptions.map(Self.resultTypeTitle))
+        button.selectItem(at: Self.resultTypeOptions.firstIndex(of: .long) ?? 0)
+        return button
+    }()
+
     private lazy var continueButton: NSButton = {
         let button = NSButton(title: "Continue", target: self, action: #selector(completeWithCredential))
         button.bezelStyle = .rounded
@@ -155,6 +189,28 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
         return field
     }()
 
+    private lazy var counterField: UITextField = {
+        let field = UITextField()
+        field.placeholder = "1"
+        field.text = "1"
+        field.borderStyle = .roundedRect
+        field.keyboardType = .numberPad
+        return field
+    }()
+
+    private var selectedResultType: SpectreResultType = .long
+
+    private lazy var resultTypeButton: UIButton = {
+        let button = UIButton(type: .system)
+        var configuration = UIButton.Configuration.plain()
+        configuration.titleAlignment = .leading
+        button.configuration = configuration
+        button.contentHorizontalAlignment = .leading
+        button.showsMenuAsPrimaryAction = true
+        refreshResultTypeButton(button)
+        return button
+    }()
+
     private lazy var continueButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Continue", for: .normal)
@@ -183,6 +239,10 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
         view.addSubview(userSecretField)
         view.addSubview(loginNameLabel)
         view.addSubview(loginNameField)
+        view.addSubview(counterLabel)
+        view.addSubview(counterField)
+        view.addSubview(resultTypeLabel)
+        view.addSubview(resultTypePopupButton)
         view.addSubview(cancelButton)
         view.addSubview(continueButton)
 
@@ -190,12 +250,7 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
             statusLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
             statusLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             statusLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            siteLabel.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16),
-            siteLabel.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
-            siteField.firstBaselineAnchor.constraint(equalTo: siteLabel.firstBaselineAnchor),
-            siteField.leadingAnchor.constraint(equalTo: siteLabel.trailingAnchor, constant: 8),
-            siteField.trailingAnchor.constraint(equalTo: statusLabel.trailingAnchor),
-            userNameLabel.topAnchor.constraint(equalTo: siteLabel.bottomAnchor, constant: 14),
+            userNameLabel.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16),
             userNameLabel.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
             userNameField.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 6),
             userNameField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
@@ -205,30 +260,47 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
             userSecretField.topAnchor.constraint(equalTo: userSecretLabel.bottomAnchor, constant: 6),
             userSecretField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
             userSecretField.trailingAnchor.constraint(equalTo: statusLabel.trailingAnchor),
-            loginNameLabel.topAnchor.constraint(equalTo: userSecretField.bottomAnchor, constant: 12),
+            siteLabel.topAnchor.constraint(equalTo: userSecretField.bottomAnchor, constant: 12),
+            siteLabel.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
+            siteField.firstBaselineAnchor.constraint(equalTo: siteLabel.firstBaselineAnchor),
+            siteField.leadingAnchor.constraint(equalTo: siteLabel.trailingAnchor, constant: 8),
+            siteField.trailingAnchor.constraint(equalTo: statusLabel.trailingAnchor),
+            loginNameLabel.topAnchor.constraint(equalTo: siteLabel.bottomAnchor, constant: 14),
             loginNameLabel.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
             loginNameField.topAnchor.constraint(equalTo: loginNameLabel.bottomAnchor, constant: 6),
             loginNameField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
             loginNameField.trailingAnchor.constraint(equalTo: statusLabel.trailingAnchor),
-            cancelButton.topAnchor.constraint(equalTo: loginNameField.bottomAnchor, constant: 16),
+            counterLabel.topAnchor.constraint(equalTo: loginNameField.bottomAnchor, constant: 12),
+            counterLabel.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
+            counterField.firstBaselineAnchor.constraint(equalTo: counterLabel.firstBaselineAnchor),
+            counterField.leadingAnchor.constraint(equalTo: counterLabel.trailingAnchor, constant: 8),
+            counterField.widthAnchor.constraint(equalToConstant: 80),
+            resultTypeLabel.firstBaselineAnchor.constraint(equalTo: counterLabel.firstBaselineAnchor),
+            resultTypeLabel.leadingAnchor.constraint(equalTo: counterField.trailingAnchor, constant: 20),
+            resultTypePopupButton.firstBaselineAnchor.constraint(equalTo: resultTypeLabel.firstBaselineAnchor),
+            resultTypePopupButton.leadingAnchor.constraint(equalTo: resultTypeLabel.trailingAnchor, constant: 8),
+            resultTypePopupButton.trailingAnchor.constraint(lessThanOrEqualTo: statusLabel.trailingAnchor),
+            cancelButton.topAnchor.constraint(equalTo: counterLabel.bottomAnchor, constant: 16),
             cancelButton.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
-            continueButton.topAnchor.constraint(equalTo: loginNameField.bottomAnchor, constant: 16),
+            continueButton.topAnchor.constraint(equalTo: counterLabel.bottomAnchor, constant: 16),
             continueButton.leadingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 8),
             continueButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -24)
         ])
 
         self.view = view
-        preferredContentSize = NSSize(width: 440, height: 360)
+        preferredContentSize = NSSize(width: 440, height: 425)
         #elseif canImport(UIKit)
         let view = UIView()
         view.backgroundColor = .systemBackground
 
         let stack = UIStackView(arrangedSubviews: [
             statusLabel,
-            labeledFieldStack(title: "Site", field: siteField),
             labeledFieldStack(title: "User name", field: userNameField),
             labeledFieldStack(title: "User Master Password", field: userSecretField),
+            labeledFieldStack(title: "Site", field: siteField),
             labeledFieldStack(title: "Login name", field: loginNameField),
+            labeledFieldStack(title: "Counter", field: counterField),
+            labeledResultTypeStack(title: "Result type"),
             buttonRow()
         ])
         stack.axis = .vertical
@@ -315,12 +387,15 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
             throw ProviderError.missingLoginName
         }
 
+        let counter = counterValue
+
         let password = try SpectreAlgorithm.password(
             for: SpectreConfiguration(
                 userName: userName,
                 userSecret: userSecret,
                 siteName: siteName,
-                resultType: .long
+                counter: counter,
+                resultType: selectedResultTypeValue
             )
         )
 
@@ -361,11 +436,36 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     private var userSecretValue: String { userSecretField.stringValue }
     private var siteValue: String { siteField.stringValue }
     private var loginNameValue: String { loginNameField.stringValue }
+    private var counterValue: UInt32 {
+        let trimmed = counterField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        var parsed = (UInt32(trimmed) ?? 1)
+        if parsed < 1 {
+            parsed = 1
+        }
+        return parsed
+    }
+
+    private var selectedResultTypeValue: SpectreResultType {
+        let index = resultTypePopupButton.indexOfSelectedItem
+        guard Self.resultTypeOptions.indices.contains(index) else {
+            return .long
+        }
+        return Self.resultTypeOptions[index]
+    }
     #elseif canImport(UIKit)
     private var userNameValue: String { userNameField.text ?? "" }
     private var userSecretValue: String { userSecretField.text ?? "" }
     private var siteValue: String { siteField.text ?? "" }
     private var loginNameValue: String { loginNameField.text ?? "" }
+    private var counterValue: UInt32 {
+        let trimmed = (counterField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let parsed = UInt32(trimmed), parsed > 0 else {
+            throw ProviderError.invalidCounter
+        }
+        return parsed
+    }
+
+    private var selectedResultTypeValue: SpectreResultType { selectedResultType }
 
     private func labeledFieldStack(title: String, field: UITextField) -> UIStackView {
         let label = UILabel()
@@ -378,6 +478,37 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
         return stack
     }
 
+    private func labeledResultTypeStack(title: String) -> UIStackView {
+        let label = UILabel()
+        label.text = title
+        label.font = .preferredFont(forTextStyle: .subheadline)
+
+        let stack = UIStackView(arrangedSubviews: [label, resultTypeButton])
+        stack.axis = .vertical
+        stack.spacing = 6
+        return stack
+    }
+
+    private func refreshResultTypeButton(_ button: UIButton? = nil) {
+        let targetButton = button ?? resultTypeButton
+        var configuration = targetButton.configuration ?? UIButton.Configuration.plain()
+        configuration.title = Self.resultTypeTitle(selectedResultType)
+        targetButton.configuration = configuration
+        targetButton.menu = makeResultTypeMenu()
+    }
+
+    private func makeResultTypeMenu() -> UIMenu {
+        UIMenu(children: Self.resultTypeOptions.map { resultType in
+            UIAction(
+                title: Self.resultTypeTitle(resultType),
+                state: resultType == selectedResultType ? .on : .off
+            ) { [weak self] _ in
+                self?.selectedResultType = resultType
+                self?.refreshResultTypeButton()
+            }
+        })
+    }
+
     private func buttonRow() -> UIStackView {
         let stack = UIStackView(arrangedSubviews: [cancelButton, continueButton])
         stack.axis = .horizontal
@@ -386,4 +517,25 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
         return stack
     }
     #endif
+
+    private static func resultTypeTitle(_ resultType: SpectreResultType) -> String {
+        switch resultType {
+        case .maximum:
+            return "Maximum"
+        case .long:
+            return "Long"
+        case .medium:
+            return "Medium"
+        case .basic:
+            return "Basic"
+        case .short:
+            return "Short"
+        case .pin:
+            return "PIN"
+        case .name:
+            return "Name"
+        case .phrase:
+            return "Phrase"
+        }
+    }
 }
