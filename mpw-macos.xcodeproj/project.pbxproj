@@ -16,6 +16,8 @@
 		A00100010000000000000005 /* SpectreTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0010002000000000000000A /* SpectreTemplates.swift */; };
 		A00100010000000000000006 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0010002000000000000000B /* App.swift */; };
 		A00100010000000000000007 /* CredentialProviderExtension.appex in CopyFiles */ = {isa = PBXBuildFile; fileRef = A00100020000000000000008 /* CredentialProviderExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A00100010000000000000008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0010002000000000000000F /* Assets.xcassets */; };
+		A00100010000000000000009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00100020000000000000010 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		A0010002000000000000000C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0010002000000000000000D /* mpw-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "mpw-ios.entitlements"; sourceTree = "<group>"; };
 		A0010002000000000000000E /* mpw-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mpw-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0010002000000000000000F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A00100020000000000000010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,7 @@
 				A00100020000000000000001 /* App.swift */,
 				A00100020000000000000002 /* Info.plist */,
 				A00100020000000000000003 /* mpw-macos.entitlements */,
+				A0010002000000000000000F /* Assets.xcassets */,
 			);
 			path = "mpw-macos";
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 				A0010002000000000000000B /* App.swift */,
 				A0010002000000000000000C /* Info.plist */,
 				A0010002000000000000000D /* mpw-ios.entitlements */,
+				A00100020000000000000010 /* Assets.xcassets */,
 			);
 			path = "mpw-ios";
 			sourceTree = "<group>";
@@ -171,6 +177,7 @@
 			buildPhases = (
 				A00100100000000000000001 /* Sources */,
 				A00100070000000000000001 /* Frameworks */,
+				A001000F0000000000000001 /* Resources */,
 				A00100060000000000000001 /* CopyFiles */,
 			);
 			buildRules = (
@@ -205,6 +212,7 @@
 			buildPhases = (
 				A00100100000000000000003 /* Sources */,
 				A00100070000000000000003 /* Frameworks */,
+				A001000F0000000000000003 /* Resources */,
 				A00100060000000000000002 /* CopyFiles */,
 			);
 			buildRules = (
@@ -260,6 +268,25 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A001000F0000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00100010000000000000008 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A001000F0000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00100010000000000000009 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A00100100000000000000001 /* Sources */ = {
@@ -399,6 +426,7 @@
 		A00100120000000000000003 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "mpw-macos/mpw-macos.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -423,6 +451,7 @@
 		A00100120000000000000004 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "mpw-macos/mpw-macos.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -505,6 +534,7 @@
 		A00100120000000000000007 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "mpw-ios/mpw-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -531,6 +561,7 @@
 		A00100120000000000000008 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "mpw-ios/mpw-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
