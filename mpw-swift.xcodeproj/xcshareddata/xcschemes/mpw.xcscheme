@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A00100050000000000000003"
-               BuildableName = "mpw-ios.app"
-               BlueprintName = "mpw-ios"
+               BuildableName = "mpw.app"
+               BlueprintName = "mpw"
                ReferencedContainer = "container:mpw-swift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A00100050000000000000003"
-            BuildableName = "mpw-ios.app"
-            BlueprintName = "mpw-ios"
+            BuildableName = "mpw.app"
+            BlueprintName = "mpw"
             ReferencedContainer = "container:mpw-swift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A00100050000000000000003"
-            BuildableName = "mpw-ios.app"
-            BlueprintName = "mpw-ios"
+            BuildableName = "mpw.app"
+            BlueprintName = "mpw"
             ReferencedContainer = "container:mpw-swift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

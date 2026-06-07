@@ -49,8 +49,8 @@
 		A0010002000000000000000A /* SpectreTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectreTemplates.swift; sourceTree = "<group>"; };
 		A0010002000000000000000B /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		A0010002000000000000000C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A0010002000000000000000D /* mpw-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "mpw-ios.entitlements"; sourceTree = "<group>"; };
-		A0010002000000000000000E /* mpw-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mpw-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0010002000000000000000D /* mpw.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "mpw.entitlements"; sourceTree = "<group>"; };
+		A0010002000000000000000E /* mpw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mpw.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00100020000000000000010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,7 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				A00100080000000000000003 /* CredentialProviderExtension */,
-				A00100080000000000000005 /* mpw-ios */,
+				A00100080000000000000005 /* mpw */,
 				839E66392FD091270029A413 /* Frameworks */,
 				A00100080000000000000004 /* Products */,
 			);
@@ -107,20 +107,20 @@
 			isa = PBXGroup;
 			children = (
 				A00100020000000000000008 /* CredentialProviderExtension.appex */,
-				A0010002000000000000000E /* mpw-ios.app */,
+				A0010002000000000000000E /* mpw.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A00100080000000000000005 /* mpw-ios */ = {
+		A00100080000000000000005 /* mpw */ = {
 			isa = PBXGroup;
 			children = (
 				A0010002000000000000000B /* App.swift */,
 				A0010002000000000000000C /* Info.plist */,
-				A0010002000000000000000D /* mpw-ios.entitlements */,
+				A0010002000000000000000D /* mpw.entitlements */,
 				A00100020000000000000010 /* Assets.xcassets */,
 			);
-			path = "mpw-ios";
+			path = "mpw";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +142,9 @@
 			productReference = A00100020000000000000008 /* CredentialProviderExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		A00100050000000000000003 /* mpw-ios */ = {
+		A00100050000000000000003 /* mpw */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A00100090000000000000004 /* Build configuration list for PBXNativeTarget "mpw-ios" */;
+			buildConfigurationList = A00100090000000000000004 /* Build configuration list for PBXNativeTarget "mpw" */;
 			buildPhases = (
 				A00100100000000000000003 /* Sources */,
 				A00100070000000000000003 /* Frameworks */,
@@ -156,9 +156,9 @@
 			dependencies = (
 				A00100110000000000000002 /* PBXTargetDependency */,
 			);
-			name = "mpw-ios";
-			productName = "mpw-ios";
-			productReference = A0010002000000000000000E /* mpw-ios.app */;
+			name = "mpw";
+			productName = "mpw";
+			productReference = A0010002000000000000000E /* mpw.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -196,7 +196,7 @@
 			projectRoot = "";
 			targets = (
 				A00100050000000000000002 /* CredentialProviderExtension */,
-				A00100050000000000000003 /* mpw-ios */,
+				A00100050000000000000003 /* mpw */,
 			);
 		};
 /* End PBXProject section */
@@ -396,14 +396,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "mpw-ios/mpw-ios.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "mpw/mpw.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "mpw-ios/Info.plist";
+				INFOPLIST_FILE = "mpw/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Master Password";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
@@ -431,14 +431,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "mpw-ios/mpw-ios.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "mpw/mpw.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "mpw-ios/Info.plist";
+				INFOPLIST_FILE = "mpw/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Master Password";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
@@ -483,7 +483,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A00100090000000000000004 /* Build configuration list for PBXNativeTarget "mpw-ios" */ = {
+		A00100090000000000000004 /* Build configuration list for PBXNativeTarget "mpw" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A00100120000000000000007 /* Debug */,
