@@ -12,14 +12,14 @@ struct MPWiOSApp: App {
 private struct ContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("MPW iOS Credential Provider")
+            Text("Master Password iOS Credential Provider")
                 .font(.title2)
                 .bold()
 
-            Text("This sample iOS app bundles the credential provider extension shared with the macOS host app.")
+            Text("This iOS app bundles a credential provider extension that provides the Master Password algorithm.")
                 .fixedSize(horizontal: false, vertical: true)
 
-            Text("Install and enable the credential provider from iOS Settings → Passwords → Password Options.")
+            Text("Enable the credential provider from iOS Settings → General → Autofill & Password Options.")
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
         }

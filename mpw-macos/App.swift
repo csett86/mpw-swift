@@ -14,14 +14,14 @@ struct MPWMacOSApp: App {
 private struct ContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("MPW macOS Credential Provider")
+            Text("Master Password macOS Credential Provider")
                 .font(.title2)
                 .bold()
 
-            Text("This sample app embeds a credential provider extension that can be enabled from System Settings.")
+            Text("This macOS app bundles a credential provider extension that provides the Master Password algorithm.")
                 .fixedSize(horizontal: false, vertical: true)
 
-            Text("The bundled extension returns demo credentials so the project can serve as a basic starting point.")
+            Text("Enable the credential provider from System Settings → General → Autofill & Password Options.")
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
