@@ -9,25 +9,15 @@
 /* Begin PBXBuildFile section */
 		839E663D2FD091B70029A413 /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 839E663C2FD091B70029A413 /* Crypto */; };
 		839E663F2FD091C60029A413 /* CryptoExtras in Frameworks */ = {isa = PBXBuildFile; productRef = 839E663E2FD091C60029A413 /* CryptoExtras */; };
-		A00100010000000000000001 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100020000000000000001 /* App.swift */; };
 		A00100010000000000000002 /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100020000000000000004 /* CredentialProviderViewController.swift */; };
-		A00100010000000000000003 /* CredentialProviderExtension.appex in CopyFiles */ = {isa = PBXBuildFile; fileRef = A00100020000000000000008 /* CredentialProviderExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A00100010000000000000004 /* SpectreAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100020000000000000009 /* SpectreAlgorithm.swift */; };
 		A00100010000000000000005 /* SpectreTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0010002000000000000000A /* SpectreTemplates.swift */; };
 		A00100010000000000000006 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0010002000000000000000B /* App.swift */; };
 		A00100010000000000000007 /* CredentialProviderExtension.appex in CopyFiles */ = {isa = PBXBuildFile; fileRef = A00100020000000000000008 /* CredentialProviderExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A00100010000000000000008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0010002000000000000000F /* Assets.xcassets */; };
 		A00100010000000000000009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00100020000000000000010 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A00100030000000000000001 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A00100040000000000000001 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A00100050000000000000002;
-			remoteInfo = CredentialProviderExtension;
-		};
 		A00100030000000000000002 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A00100040000000000000001 /* Project object */;
@@ -38,16 +28,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A00100060000000000000001 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				A00100010000000000000003 /* CredentialProviderExtension.appex in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A00100060000000000000002 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,13 +41,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A00100020000000000000001 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		A00100020000000000000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A00100020000000000000003 /* mpw-swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "mpw-swift.entitlements"; sourceTree = "<group>"; };
 		A00100020000000000000004 /* CredentialProviderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialProviderViewController.swift; sourceTree = "<group>"; };
 		A00100020000000000000005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A00100020000000000000006 /* CredentialProviderExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CredentialProviderExtension.entitlements; sourceTree = "<group>"; };
-		A00100020000000000000007 /* mpw-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mpw-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00100020000000000000008 /* CredentialProviderExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CredentialProviderExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00100020000000000000009 /* SpectreAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectreAlgorithm.swift; sourceTree = "<group>"; };
 		A0010002000000000000000A /* SpectreTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectreTemplates.swift; sourceTree = "<group>"; };
@@ -75,18 +51,10 @@
 		A0010002000000000000000C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0010002000000000000000D /* mpw-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "mpw-ios.entitlements"; sourceTree = "<group>"; };
 		A0010002000000000000000E /* mpw-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mpw-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A0010002000000000000000F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A00100020000000000000010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A00100070000000000000001 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A00100070000000000000002 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -116,23 +84,11 @@
 		A00100080000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				A00100080000000000000002 /* mpw-swift */,
 				A00100080000000000000003 /* CredentialProviderExtension */,
 				A00100080000000000000005 /* mpw-ios */,
 				839E66392FD091270029A413 /* Frameworks */,
 				A00100080000000000000004 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		A00100080000000000000002 /* mpw-swift */ = {
-			isa = PBXGroup;
-			children = (
-				A00100020000000000000001 /* App.swift */,
-				A00100020000000000000002 /* Info.plist */,
-				A00100020000000000000003 /* mpw-swift.entitlements */,
-				A0010002000000000000000F /* Assets.xcassets */,
-			);
-			path = "mpw-swift";
 			sourceTree = "<group>";
 		};
 		A00100080000000000000003 /* CredentialProviderExtension */ = {
@@ -150,7 +106,6 @@
 		A00100080000000000000004 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A00100020000000000000007 /* mpw-swift.app */,
 				A00100020000000000000008 /* CredentialProviderExtension.appex */,
 				A0010002000000000000000E /* mpw-ios.app */,
 			);
@@ -171,25 +126,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A00100050000000000000001 /* mpw-swift */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A00100090000000000000001 /* Build configuration list for PBXNativeTarget "mpw-swift" */;
-			buildPhases = (
-				A00100100000000000000001 /* Sources */,
-				A00100070000000000000001 /* Frameworks */,
-				A001000F0000000000000001 /* Resources */,
-				A00100060000000000000001 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A00100110000000000000001 /* PBXTargetDependency */,
-			);
-			name = "mpw-swift";
-			productName = "mpw-swift";
-			productReference = A00100020000000000000007 /* mpw-swift.app */;
-			productType = "com.apple.product-type.application";
-		};
 		A00100050000000000000002 /* CredentialProviderExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A00100090000000000000002 /* Build configuration list for PBXNativeTarget "CredentialProviderExtension" */;
@@ -235,9 +171,6 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
-					A00100050000000000000001 = {
-						CreatedOnToolsVersion = 16.0;
-					};
 					A00100050000000000000002 = {
 						CreatedOnToolsVersion = 16.0;
 					};
@@ -262,7 +195,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A00100050000000000000001 /* mpw-swift */,
 				A00100050000000000000002 /* CredentialProviderExtension */,
 				A00100050000000000000003 /* mpw-ios */,
 			);
@@ -270,14 +202,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A001000F0000000000000001 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A00100010000000000000008 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A001000F0000000000000003 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,14 +213,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A00100100000000000000001 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A00100010000000000000001 /* App.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A00100100000000000000002 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,11 +234,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A00100110000000000000001 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A00100050000000000000002 /* CredentialProviderExtension */;
-			targetProxy = A00100030000000000000001 /* PBXContainerItemProxy */;
-		};
 		A00100110000000000000002 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A00100050000000000000002 /* CredentialProviderExtension */;
@@ -423,56 +334,6 @@
 			};
 			name = Release;
 		};
-		A00100120000000000000003 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "mpw-swift/mpw-swift.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "mpw-swift/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@executable_path/../PlugIns",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.csett86.mpw-swift";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		A00100120000000000000004 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "mpw-swift/mpw-swift.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "mpw-swift/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@executable_path/../PlugIns",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.csett86.mpw-swift";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		A00100120000000000000005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -491,7 +352,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.csett86.mpw-ios.CredentialProviderExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.csett86.mpw.CredentialProviderExtension;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "com.csett86.mpw-swift.CredentialProviderExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -520,7 +381,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.csett86.mpw-ios.CredentialProviderExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.csett86.mpw.CredentialProviderExtension;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "com.csett86.mpw-swift.CredentialProviderExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -538,6 +399,9 @@
 				CODE_SIGN_ENTITLEMENTS = "mpw-ios/mpw-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "mpw-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Master Password";
@@ -547,11 +411,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.csett86.mpw-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.csett86.mpw;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -565,6 +434,9 @@
 				CODE_SIGN_ENTITLEMENTS = "mpw-ios/mpw-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "mpw-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Master Password";
@@ -574,11 +446,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.csett86.mpw-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.csett86.mpw;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -588,15 +465,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A00100090000000000000001 /* Build configuration list for PBXNativeTarget "mpw-swift" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A00100120000000000000003 /* Debug */,
-				A00100120000000000000004 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A00100090000000000000002 /* Build configuration list for PBXNativeTarget "CredentialProviderExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
