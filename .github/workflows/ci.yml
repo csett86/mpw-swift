@@ -8,9 +8,22 @@ on:
 
 jobs:
   test:
-
     runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v6
     - run: swift test -v
+
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v6
+    - run: xcodebuild -scheme mpw-swift -configuration Release
+
+  build-ios:
+      runs-on: macos-latest
+
+      steps:
+      - uses: actions/checkout@v6
+      - run: xcodebuild -scheme mpw-ios -configuration Release
