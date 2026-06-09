@@ -4,6 +4,10 @@ The Master Password algorithm as AuthenticationServices credential provider exte
 
 The awesome [Master Password algorithm](https://spectre.app/spectre-algorithm.pdf) was created by Maarten Billemont under GPLv3, this would not be possible without! See more of him at https://spectre.app/
 
+## Download
+
+Download the latest release: [Master Password.app.zip](https://github.com/csett86/mpw-swift/releases/latest/download/Master.Password.app.zip)
+
 ## Project contents
 
 - `mpw-swift` macOS host app target
