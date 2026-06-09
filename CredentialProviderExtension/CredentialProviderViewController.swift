@@ -37,7 +37,7 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
 
     #if canImport(AppKit)
     private lazy var statusLabel: NSTextField = {
-        let label = NSTextField(labelWithString: "Enter your Spectre user name and secret, then select Continue.")
+        let label = NSTextField(labelWithString: "Enter your user name, Master Password, check the site, then select Continue.")
         label.lineBreakMode = .byWordWrapping
         label.maximumNumberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
