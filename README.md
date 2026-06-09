@@ -6,7 +6,11 @@ The awesome [Master Password algorithm](https://spectre.app/spectre-algorithm.pd
 
 ## Download
 
-Download the latest release for macOS: [Master Password.app.zip](https://github.com/csett86/mpw-swift/releases/latest/download/Master.Password.app.zip)
+Download the latest release for macOS 14+ (Sonoma): [Master Password.app.zip](https://github.com/csett86/mpw-swift/releases/latest/download/Master.Password.app.zip)
+
+After installing the app, enable the bundled credential provider from:
+- macOS: **System Settings → General -> Autofill & Passwords**
+- iOS: **Settings → General → Autofill & Passwords**
 
 ## Project contents
 
@@ -14,10 +18,6 @@ Download the latest release for macOS: [Master Password.app.zip](https://github.
 - `mpw-ios` iOS host app target
 - `CredentialProviderExtension` app extension target shared by both host apps
 
-## Open in Xcode
+## Build in Xcode
 
 Open `mpw-swift.xcodeproj` in Xcode 16 or newer and build either `mpw-swift` (macOS) or `mpw-ios` (iOS).
-
-After installing the app, enable the bundled credential provider from:
-- macOS: **System Settings → General -> Autofill & Passwords**
-- iOS: **Settings → General → Autofill & Passwords**
